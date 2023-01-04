@@ -1,0 +1,5 @@
+//각 모듈에 필요한 dependency를 넣어준다
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation project(':module-common-library')
+}
