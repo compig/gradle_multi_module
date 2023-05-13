@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 
 @Entity
@@ -31,7 +32,7 @@ public class Board {
     private Audit audit = new Audit();
 
     public void update(Board updateBoard) {
-        this.title = updateBoard.getTitle();
-        this.content = updateBoard.getContent();
+        this.title = StringUtils.defaultIfEmpty(updateBoard.getTitle(), this.title);
+        this.content = StringUtils.defaultIfEmpty(updateBoard.getContent(), this.content);
     }
 }

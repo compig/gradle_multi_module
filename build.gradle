@@ -42,6 +42,7 @@ subprojects {
             exclude group: "org.springframework.boot", module: "spring-boot-starter-tomcat"
         }
         implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
+        implementation 'org.apache.commons:commons-lang3:3.12.0'
         compileOnly 'org.projectlombok:lombok'
         developmentOnly 'org.springframework.boot:spring-boot-devtools'
         runtimeOnly 'com.mysql:mysql-connector-j:8.0.32'
@@ -55,6 +56,7 @@ subprojects {
         useJUnitPlatform()
     }
 }
+
 subprojects.each { subproject ->
     def common = project(':module-common-library')
     if (subproject.name != 'module-common-library') {

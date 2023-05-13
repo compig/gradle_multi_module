@@ -1,43 +1,43 @@
 package com.coldbrew.board.application;
 
-import com.coldbrew.board.repository.BoardRepository;
 import com.coldbrew.common.domain.Board;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/boards")
 @AllArgsConstructor
+@Slf4j
 public class BoardController {
 
-    private final BoardRepository boardRepository;
+    private final BoardService boardService;
 
-    @GetMapping("")
+    @GetMapping()
     public List<Board> getAllBoards() {
-        return boardRepository.findAll();
+        return boardService.getAllBoards();
     }
 
-    @PostMapping("")
-    public Board createBoard(@RequestBody Board board) {
-        return boardRepository.save(board);
+    @PostMapping()
+    public Long createBoard(@RequestBody Board board) {
+        return boardService.createBoard(board);
     }
 
     @GetMapping("/{id}")
     public Board getBoardById(@PathVariable Long id) {
-        return boardRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Board not found"));
+        return boardService.getBoardById(id);
     }
 
     @PutMapping("/{id}")
-    public Board updateBoardById(@PathVariable Long id, @RequestBody Board updatedBoard) {
-        Board board = boardRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Board not found"));
-        board.update(updatedBoard);
-        return board;
+    public Long updateBoardById(@PathVariable Long id, @RequestBody Board updatedBoard) {
+        return boardService.updateBoardById(id, updatedBoard);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteBoardById(@PathVariable Long id) {
+        boardService.deleteBoardById(id);
     }
 
 }

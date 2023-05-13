@@ -1,5 +1,5 @@
 ##### 개발환경
-- Spring Boot 3.0.1
+- Spring Boot 3.0.4
 - Java 17
 - Gradle 7.x
 - IntelliJ
@@ -15,9 +15,14 @@ multi-module-coldbrew<br>
 Root project 및 Sub project 만들기
 1. Root Project
     1. 모듈 생성<br>
-       **root의 src는 사용 하지 않음 삭제 할 것 **<br>
+       **root의 src는 사용 하지 않음 삭제 할 것**<br>
 2. Sub Project
     1. 모듈 생성<br>
 3. common library Project
     1. 모듈 생성<br>
        **common library의 main은 사용 하지 않음 삭제 할 것**<br>
+
+## 게시판용 web application
+* sleuth 보류
+* jwt
+* OAuth2.0 Google Apple

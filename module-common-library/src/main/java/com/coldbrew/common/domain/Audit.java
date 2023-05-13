@@ -2,11 +2,9 @@ package com.coldbrew.common.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import lombok.*;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 
@@ -17,20 +15,26 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Audit {
 
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+    @Column(length = 50, updatable = false)
+    private String createdBy; // 등록자 아이디
 
-    @CreatedBy
-    @Column(nullable = false, updatable = false)
-    private String createdBy;
+    @Column(length = 50)
+    private String updatedBy; // 수정자 아이디
 
-    @LastModifiedDate
-    @Column(nullable = false)
-    private LocalDateTime updatedAt;
+    @Column(updatable = false)
+    private LocalDateTime createdAt; // 등록일시
 
-    @LastModifiedBy
-    @Column(nullable = false)
-    private String updatedBy;
+    private LocalDateTime updatedAt; // 수정일시
+
+    @PrePersist
+    public void prePersist() {
+        if (createdAt == null) createdAt = LocalDateTime.now();
+        this.preUpdate();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 
 }
