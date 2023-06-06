@@ -1,16 +1,14 @@
 package com.coldbrew.board.application;
 
 import com.coldbrew.common.domain.Board;
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/boards")
-@AllArgsConstructor
-@Slf4j
+@RequiredArgsConstructor
 public class BoardController {
 
     private final BoardService boardService;

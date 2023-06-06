@@ -1,5 +1,5 @@
 ##### 개발환경
-- Spring Boot 3.0.4
+- Spring Boot 3.0.4 -> 2.X 로 변경 sleuth 3.X 지원 하지 않음
 - Java 17
 - Gradle 7.x
 - IntelliJ
@@ -23,6 +23,5 @@ Root project 및 Sub project 만들기
        **common library의 main은 사용 하지 않음 삭제 할 것**<br>
 
 ## 게시판용 web application
-* sleuth 보류
 * jwt
 * OAuth2.0 Google Apple

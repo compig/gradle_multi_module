@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.0.4'
+    id 'org.springframework.boot' version '2.7.12'
     id 'io.spring.dependency-management' version '1.1.0'
 }
 
@@ -21,7 +21,6 @@ subprojects {
     // spring boot dependency를 사용하여 사용중인 부트 버전에서 자동으로 의존성을 가져온다.
     apply plugin: 'io.spring.dependency-management'
 
-    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
     }
@@ -35,10 +34,11 @@ subprojects {
     repositories {
         mavenCentral()
     }
+
     //각각의 모듈에 공통으로 들어갈 dependency
     dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.0.4'
-        implementation ('org.springframework.boot:spring-boot-starter-data-rest:3.0.4') {
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.12'
+        implementation ('org.springframework.boot:spring-boot-starter-data-rest:2.7.12') {
             exclude group: "org.springframework.boot", module: "spring-boot-starter-tomcat"
         }
         implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
@@ -47,10 +47,19 @@ subprojects {
         developmentOnly 'org.springframework.boot:spring-boot-devtools'
         runtimeOnly 'com.mysql:mysql-connector-j:8.0.32'
         annotationProcessor 'org.projectlombok:lombok'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.4'
-
+        testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.12'
+        implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:3.1.5'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+        implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+        implementation 'org.springframework.boot:spring-boot-starter-undertow'
     }
-
+    configurations {
+        all {
+            exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+            exclude module: 'spring-boot-starter-tomcat'
+        }
+    }
 // test options
     test {
         useJUnitPlatform()
