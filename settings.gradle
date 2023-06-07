@@ -2,6 +2,6 @@ rootProject.name = 'multi-modules-coldbrew'
 include 'module-common-library'
 include 'module-scheduler-batch'
 include 'module-board-resource'
+include 'module-member-resource'
 include 'module-web'
-include 'module-user-resource'
 

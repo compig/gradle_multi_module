@@ -8,6 +8,7 @@
 multi-module-coldbrew<br>
 |--- module-common-library<br>
 |--- module-scheduler-batch<br>
+|--- module-member-resource<br>
 |--- module-board-resource<br>
 |--- module-web<br>
 |--- gradle<br>
@@ -25,3 +26,4 @@ Root project 및 Sub project 만들기
 ## 게시판용 web application
 * jwt
 * OAuth2.0 Google Apple
+flyway해야함
